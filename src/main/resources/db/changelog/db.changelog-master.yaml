@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: migrations/001-alter-customers-add-wallet.sql
+      relativeToChangelogFile: true
+  - include:
+      file: migrations/002-create-table-customer-kids.xml
+      relativeToChangelogFile: true

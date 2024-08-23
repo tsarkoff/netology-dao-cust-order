@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="00002" author="tsarkoff" context="premium-subscription" failOnError="false">
+        <createTable tableName="customer_kids" schemaName="contacts">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="customer_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="kid_name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="kid_age" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="00003" author="tsarkoff">
+        <addForeignKeyConstraint
+                baseColumnNames="customer_id"
+                baseTableName="customer_kids"
+                baseTableSchemaName="contacts"
+                constraintName="customer_id_fk"
+                onDelete="CASCADE"
+                onUpdate="RESTRICT"
+                referencedColumnNames="id"
+                referencedTableName="customers"
+                referencedTableSchemaName="contacts"
+                validate="true"/>
+    </changeSet>
+</databaseChangeLog>
