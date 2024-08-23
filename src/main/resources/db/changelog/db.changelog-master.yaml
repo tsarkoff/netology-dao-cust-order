@@ -1,4 +1,4 @@
 databaseChangeLog:
   - include:
-      file: migrations/001-alter-cart-add-price.sql
+      file: migrations/002-create-wallet-n-bank.xml
       relativeToChangelogFile: true

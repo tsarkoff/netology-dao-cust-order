@@ -1,3 +1,18 @@
+# 4. Доработка для одновременной работы liquibase(change-set) и hibernate (entity-to-table)
+1. Usr: Запустить приложение с параметрами:
+   - spring.jpa.hibernate.ddl-auto=update
+   - spring.liquibase.enabled=true
+2. Sys: Выполнится миграция с созданием (Ликвибейзом) новых таблиц:
+   - Wallet (кошельки)
+   - Bank (банки)
+   - создастся связь многих банков с одним кошельком
+   - лог миграции запишется в таблицу databasechangelog
+4. Sys: Выполнится создание (Хибернейтом) таблиц из Entity:
+   - Customer
+   - Cart
+4. Usr: Наполнить таблицы методом : GET http://127.0.0.1:8080/products/init
+5. Usr: Посмотреть продукты Алексея методом : GET http://127.0.0.1:8080/products/fetch-product?name=AlexeY
+
 # 3. Добавление функционала Миграции (liquibase)
 1. Запустить приложение с параметрами:
    - spring.jpa.hibernate.ddl-auto=update

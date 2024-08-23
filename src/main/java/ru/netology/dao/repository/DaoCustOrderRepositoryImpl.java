@@ -22,11 +22,11 @@ public class DaoCustOrderRepositoryImpl implements DaoCustOrderRepository {
     @Override
     @Transactional
     public List<?> getProducts(String customerName) {
-        System.out.println("==> entityManager.createNativeQuery()");
-        String sqlScript = read();
-        sqlScript = sqlScript.replace("?1", customerName);
-        Query query = entityManager.createNativeQuery(sqlScript);
-        List<?> productNames = query.getResultList();
+        System.out.println("==> entityManager.createQuery()");
+        String jpqlScript = "SELECT p.productName FROM Cart p INNER JOIN Customer c ON p.customer.id = c.id WHERE lower(c.name) = :customerName";
+        Query jpqlQuery = entityManager.createQuery(jpqlScript);
+        jpqlQuery.setParameter("customerName", customerName.toLowerCase());
+        List<?> productNames = jpqlQuery.getResultList();
         productNames.forEach(System.out::println);
         return productNames;
     }
@@ -54,15 +54,15 @@ public class DaoCustOrderRepositoryImpl implements DaoCustOrderRepository {
         System.out.println("Updated CUSTOMER rows = " + rows);
 
         q = entityManager.createNativeQuery("""
-                insert into public.CART (date, customer_id, product_name, amount, price)
-                values ('2024-08-01', 1, 'Bread', 10, 80),
-                       ('2024-08-05', 2, 'Milk', 5, 50),
-                       ('2024-08-05', 2, 'Cake', 10, 950),
-                       ('2024-07-02', 3, 'Butter', 500, 180),
-                       ('2024-07-20', 4, 'Meat', 5, 550),
-                       ('2024-07-20', 4, 'Bread', 5, 80),
-                       ('2024-07-20', 4, 'Ketchup', 5, 120),
-                       ('2024-08-15', 5, 'Cake', 3, 950);
+                insert into public.CART (date, customer_id, product_name, amount)
+                values ('2024-08-01', 1, 'Bread', 10),
+                       ('2024-08-05', 2, 'Milk', 5),
+                       ('2024-08-05', 2, 'Cake', 10),
+                       ('2024-07-02', 3, 'Butter', 500),
+                       ('2024-07-20', 4, 'Meat', 5),
+                       ('2024-07-20', 4, 'Bread', 5),
+                       ('2024-07-20', 4, 'Ketchup', 5),
+                       ('2024-08-15', 5, 'Cake', 3);
                 """);
         rows = q.executeUpdate();
         System.out.println("Updated CART rows = " + rows);
