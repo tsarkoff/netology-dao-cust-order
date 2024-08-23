@@ -1,0 +1,4 @@
+databaseChangeLog:
+  - include:
+      file: migrations/001-alter-cart-add-price.sql
+      relativeToChangelogFile: true

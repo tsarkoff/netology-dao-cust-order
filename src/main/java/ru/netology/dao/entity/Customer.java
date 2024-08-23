@@ -30,4 +30,7 @@ public class Customer {
 
     @Column(nullable = false)
     private String city;
+
+    @Column
+    private String gender;
 }

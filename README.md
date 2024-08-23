@@ -1,3 +1,16 @@
+# 3. Добавление функционала Миграции (liquibase)
+1. Запустить приложение с параметрами:
+   - spring.jpa.hibernate.ddl-auto=update
+   - spring.liquibase.enabled=false
+2. Произойдет создание (Хибернейтом) таблиц Cart (как и ранее) и Customer с новыми полем Gender, добавленным в Entity и в метод GET /init
+3. ПереЗапустить приложение, изменив параметр spring.liquibase.enabled=true
+4. Произойдет миграция таблицы Cart с добавлением поля Price из Change-Set'а с наличием Цены в методе GET /init
+5. Лог миграции запишется в таблицу databasechangelog
+6. Вызвать метод GET http://127.0.0.1:8080/products/init
+7. Проверить в таблицах наличие данных для полей Customer.Gender и СCart.Price
+8. Вызвать метод : GET http://127.0.0.1:8080/products/fetch-product?name=AlexeY для получения Наименований Товаров, заказанных Алексеями 
+---
+
 # 2. Замена JDBС (NamedParameterJdbcTemplate) на Hibernate (EntityManager)
 1. Все аналогично пунктам из параграфа 1 ниже, но:
 2. Перед вызовом метода : GET http://127.0.0.1:8080/products/fetch-product?name=AlexeY
