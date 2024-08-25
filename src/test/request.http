@@ -1,8 +1,11 @@
-###
+### IDEA
 GET http://127.0.0.1:8080/products/init
 
+### Dcokar
+GET http://127.0.0.1:8081/products/init
 
-###
+### IDEA
 GET http://127.0.0.1:8080/products/fetch-product?name=AlexeY
 
-
+### Docker
+GET http://127.0.0.1:8081/products/fetch-product?name=AlexeY

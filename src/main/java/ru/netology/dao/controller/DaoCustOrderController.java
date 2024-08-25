@@ -13,12 +13,18 @@ import java.util.List;
 public class DaoCustOrderController {
     private final DaoCustOrderService service;
 
-    @GetMapping("/init")
+    @RequestMapping(
+            value = "/init",
+            method = RequestMethod.GET
+    )
     public void init() {
         service.init();
     }
 
-    @GetMapping("/fetch-product")
+    @RequestMapping(
+            value = "/fetch-product",
+            method = RequestMethod.GET
+    )
     public List<?> getProducts(@RequestParam("name") String customerName) {
         return service.getProducts(customerName);
     }
