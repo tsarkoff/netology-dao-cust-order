@@ -6,8 +6,8 @@ import ru.netology.dao.service.DaoCustOrderService;
 
 import java.util.List;
 
-@CrossOrigin
 @RestController
+@CrossOrigin
 @RequiredArgsConstructor
 @RequestMapping(path = "/products")
 public class DaoCustOrderController {
