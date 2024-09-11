@@ -2,7 +2,6 @@ package ru.netology.dao.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.netology.dao.repository.Product;
 import ru.netology.dao.service.DaoCustOrderService;
 
 import java.util.List;
@@ -14,8 +13,13 @@ import java.util.List;
 public class DaoCustOrderController {
     private final DaoCustOrderService service;
 
+    @GetMapping("/init")
+    public void init() {
+        service.init();
+    }
+
     @GetMapping("/fetch-product")
-    public List<Product> getProducts(@RequestParam("name") String customerName) {
+    public List<?> getProducts(@RequestParam("name") String customerName) {
         return service.getProducts(customerName);
     }
 }

@@ -3,7 +3,6 @@ package ru.netology.dao.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.netology.dao.repository.DaoCustOrderRepository;
-import ru.netology.dao.repository.Product;
 
 import java.util.List;
 
@@ -12,7 +11,11 @@ import java.util.List;
 public class DaoCustOrderService {
     private final DaoCustOrderRepository daoRepository;
 
-    public List<Product> getProducts(String customerName) {
+    public void init() {
+        daoRepository.init();
+    }
+
+    public List<?> getProducts(String customerName) {
         return daoRepository.getProducts(customerName);
     }
 }
